@@ -1,30 +1,30 @@
-import { PropsWithChildren } from "react"
-import { css, Global, ThemeProvider as ThemeProviderEmotion  } from "@emotion/react"
-import { theme } from "./theme";
+import { PropsWithChildren } from "react";
+import {
+  css,
+  Global,
+  ThemeProvider as ThemeProviderEmotion,
+} from "@emotion/react";
+import { THEME } from "./theme";
 
 const globalStyle = css`
   * {
     font-family: "Arial";
   }
   html {
-    background: ${theme.colors.dark};
+    background: ${THEME.color.dark};
     height: 100%;
   }
   body {
     margin: 0;
-    color: ${theme.colors.light};
+    color: ${THEME.color.light};
   }
 `;
 
-export const ThemeProvider = ({
-    children,
-  }: PropsWithChildren<unknown>) => {
-    return (
-      <>
-        <Global styles={globalStyle} />
-        <ThemeProviderEmotion theme={theme}>
-          {children}
-        </ThemeProviderEmotion>
-      </>
-    )
-  }
+export const ThemeProvider = ({ children }: PropsWithChildren<unknown>) => {
+  return (
+    <>
+      <Global styles={globalStyle} />
+      {children}
+    </>
+  );
+};
