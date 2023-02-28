@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
-import { THEME } from "../styling/theme";
 
 const StretchContainer = styled.div`
   display: flex;
@@ -18,6 +17,8 @@ const CenterContainer = styled.div`
 
 export const MainContainer = ({ children }: PropsWithChildren<unknown>) => (
   <StretchContainer>
-    <CenterContainer>{children}</CenterContainer>
+    <CenterContainer>
+      {children}
+    </CenterContainer>
   </StretchContainer>
 );
