@@ -13,7 +13,5 @@ const PanelContainer = styled.div`
 `;
 
 export const Panel = ({ children }: PropsWithChildren<unknown>) => (
-  <PanelContainer>
-    {children}
-  </PanelContainer>
+  <PanelContainer>{children}</PanelContainer>
 );

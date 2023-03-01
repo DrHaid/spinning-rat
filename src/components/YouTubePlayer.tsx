@@ -1,53 +1,66 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react"
+import { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
 type YouTubePlayerProps = {
   videoEmbedURL: string;
+};
+
+export type YouTubePlayerRef = {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  setVolume: (vol: number) => void;
 }
 
-export const YouTubePlayer = forwardRef(({videoEmbedURL}: YouTubePlayerProps, ref) => {
-  const player: any = useRef();
+export const YouTubePlayer = forwardRef(
+  ({ videoEmbedURL }: YouTubePlayerProps, ref: ForwardedRef<YouTubePlayerRef>) => {
+    const player: any = useRef();
 
-  useImperativeHandle(ref, () => ({
-    playVideo, pauseVideo, setVolume
-  }));
+    useImperativeHandle(ref, () => ({
+      playVideo,
+      pauseVideo,
+      setVolume,
+    }));
 
-  useEffect(() => {
-    // Add YouTube iFrame API script to document
-    if (!(window as any).YT) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
+    useEffect(() => {
+      // Add YouTube iFrame API script to document
+      if (!(window as any).YT) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
 
-      (window as any).onYouTubeIframeAPIReady = initPlayer;
+        (window as any).onYouTubeIframeAPIReady = initPlayer;
 
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    } else {
-      initPlayer();
-    }
-  }, [])
-
-  const initPlayer = () => {
-    player.current = new (window as any).YT.Player("youtube-player", {
-      events: {
-        // onReady: onReady
+        const firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+      } else {
+        initPlayer();
       }
-    })
-  }
+    }, []);
 
-  const playVideo = () => {
-    player.current.playVideo();
-  }
+    const initPlayer = () => {
+      player.current = new (window as any).YT.Player("youtube-player", {
+        events: {
+          // onReady: onReady
+        },
+      });
+    };
 
-  const pauseVideo = () => {
-    player.current.pauseVideo();
-  }
+    const playVideo = () => {
+      player.current.playVideo();
+    };
 
-  const setVolume = () => {
-    //TODO
-  }
+    const pauseVideo = () => {
+      player.current.pauseVideo();
+    };
 
-  return(
-    <iframe id="youtube-player" src={`${videoEmbedURL}&controls=0&enablejsapi=1`}/>
-  )
-})
+    const setVolume = (vol: number) => {
+      const clampedVolume = Math.max(Math.min(100, vol), 0);
+      player.current.setVolume(clampedVolume);
+    };
+
+    return (
+      <iframe
+        id="youtube-player"
+        src={`${videoEmbedURL}&controls=0&enablejsapi=1`}
+      />
+    );
+  }
+);

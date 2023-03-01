@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Slider } from "./Slider"
+import { Slider } from "./Slider";
 
 export const SpinControls = () => {
   const [spinX, setSpinX] = useState(0);
@@ -19,5 +19,5 @@ export const SpinControls = () => {
       Zoom
       <Slider value={zoom} onChange={setZoom} />
     </>
-  )
-}
+  );
+};

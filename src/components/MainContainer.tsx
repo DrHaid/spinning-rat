@@ -17,8 +17,6 @@ const CenterContainer = styled.div`
 
 export const MainContainer = ({ children }: PropsWithChildren<unknown>) => (
   <StretchContainer>
-    <CenterContainer>
-      {children}
-    </CenterContainer>
+    <CenterContainer>{children}</CenterContainer>
   </StretchContainer>
 );

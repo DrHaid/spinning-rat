@@ -2,7 +2,6 @@ import { PropsWithChildren } from "react";
 import {
   css,
   Global,
-  ThemeProvider as ThemeProviderEmotion,
 } from "@emotion/react";
 import { THEME } from "./theme";
 

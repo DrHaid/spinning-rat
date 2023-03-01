@@ -5,8 +5,8 @@ import { RatDisplay } from "./components/RatDisplay";
 const App = () => {
   return (
     <MainContainer>
-      <RatDisplay/>
-      <Controls/>
+      <RatDisplay />
+      <Controls />
     </MainContainer>
   );
 };
