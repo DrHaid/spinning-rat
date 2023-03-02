@@ -1,17 +1,27 @@
-import { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 
 type YouTubePlayerProps = {
   videoEmbedURL: string;
+  initialVolume?: number;
 };
 
 export type YouTubePlayerRef = {
   playVideo: () => void;
   pauseVideo: () => void;
   setVolume: (vol: number) => void;
-}
+};
 
 export const YouTubePlayer = forwardRef(
-  ({ videoEmbedURL }: YouTubePlayerProps, ref: ForwardedRef<YouTubePlayerRef>) => {
+  (
+    { videoEmbedURL, initialVolume }: YouTubePlayerProps,
+    ref: ForwardedRef<YouTubePlayerRef>
+  ) => {
     const player: any = useRef();
 
     useImperativeHandle(ref, () => ({
@@ -38,9 +48,13 @@ export const YouTubePlayer = forwardRef(
     const initPlayer = () => {
       player.current = new (window as any).YT.Player("youtube-player", {
         events: {
-          // onReady: onReady
+          onReady: onPlayerReady,
         },
       });
+    };
+
+    const onPlayerReady = () => {
+      player.current.setVolume(initialVolume ?? 100);
     };
 
     const playVideo = () => {

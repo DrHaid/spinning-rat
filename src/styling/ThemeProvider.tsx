@@ -1,8 +1,5 @@
 import { PropsWithChildren } from "react";
-import {
-  css,
-  Global,
-} from "@emotion/react";
+import { css, Global } from "@emotion/react";
 import { THEME } from "./theme";
 
 const globalStyle = css`

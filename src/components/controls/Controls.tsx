@@ -4,13 +4,14 @@ import { Panel } from "../Panel";
 import { SoundControls } from "./SoundControls";
 import { SpinControls } from "./SpinControls";
 
-const Row = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: ${THEME.space.m};
   margin-top: ${THEME.space.m};
 `;
+
 export const Controls = () => {
   return (
     <Row>
