@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { THEME } from "../../styling/theme";
-import { Panel } from "../Panel";
 import { SoundControls } from "./SoundControls";
 import { SpinControls } from "./SpinControls";
 
@@ -15,12 +14,8 @@ export const Row = styled.div`
 export const Controls = () => {
   return (
     <Row>
-      <Panel>
-        <SpinControls />
-      </Panel>
-      <Panel>
-        <SoundControls />
-      </Panel>
+      <SpinControls />
+      <SoundControls />
     </Row>
   );
 };

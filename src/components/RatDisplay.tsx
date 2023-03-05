@@ -2,6 +2,6 @@ import { Panel } from "./Panel";
 
 export const RatDisplay = () => (
   <Panel>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Horizontally_spinning_rat.gif" />
+    <img src="https://i.kym-cdn.com/photos/images/original/002/422/232/02b.gif" />
   </Panel>
 );

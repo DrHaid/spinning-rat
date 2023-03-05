@@ -13,6 +13,7 @@ const CenterContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   max-width: 50rem;
+  margin-top: 5vh;
 `;
 
 export const MainContainer = ({ children }: PropsWithChildren<unknown>) => (

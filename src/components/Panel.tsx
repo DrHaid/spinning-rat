@@ -1,17 +1,31 @@
 import styled from "@emotion/styled";
-import { PropsWithChildren } from "react";
 import { THEME } from "../styling/theme";
 
-const PanelContainer = styled.div`
+export const Panel = styled.div`
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  gap: ${THEME.space.s};
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
   padding: ${THEME.space.s};
 `;
 
-export const Panel = ({ children }: PropsWithChildren<unknown>) => (
-  <PanelContainer>{children}</PanelContainer>
-);
+export const SpinPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+  justify-content: center;
+  border-radius: ${THEME.space.m};
+  border: ${THEME.border.xs};
+  padding: ${THEME.space.s};
+  gap: ${THEME.space.s};
+`;
+
+export const SoundPanel = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border-radius: ${THEME.space.m};
+  border: ${THEME.border.xs};
+  padding: ${THEME.space.s};
+  flex-direction: column;
+  gap: ${THEME.space.s};
+`;

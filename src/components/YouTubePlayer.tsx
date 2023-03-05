@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ForwardedRef,
   forwardRef,
@@ -9,6 +10,8 @@ import {
 type YouTubePlayerProps = {
   videoEmbedURL: string;
   initialVolume?: number;
+  width?: string;
+  height?: string;
 };
 
 export type YouTubePlayerRef = {
@@ -19,7 +22,7 @@ export type YouTubePlayerRef = {
 
 export const YouTubePlayer = forwardRef(
   (
-    { videoEmbedURL, initialVolume }: YouTubePlayerProps,
+    { videoEmbedURL, initialVolume, width, height }: YouTubePlayerProps,
     ref: ForwardedRef<YouTubePlayerRef>
   ) => {
     const player: any = useRef();
@@ -73,6 +76,11 @@ export const YouTubePlayer = forwardRef(
     return (
       <iframe
         id="youtube-player"
+        style={{
+          width: width,
+          height: height,
+          border: 0,
+        }}
         src={`${videoEmbedURL}&controls=0&enablejsapi=1`}
       />
     );

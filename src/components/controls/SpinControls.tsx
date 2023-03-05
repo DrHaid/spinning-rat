@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SpinPanel } from "../Panel";
 import { Slider } from "./Slider";
 
 export const SpinControls = () => {
@@ -9,7 +10,7 @@ export const SpinControls = () => {
   const [zoom, setZoom] = useState(0);
 
   return (
-    <>
+    <SpinPanel>
       Spin
       <Slider value={spinX} onChange={setSpinX} />
       <Slider value={spinY} onChange={setSpinY} />
@@ -18,6 +19,6 @@ export const SpinControls = () => {
       <Slider value={speed} onChange={setSpeed} />
       Zoom
       <Slider value={zoom} onChange={setZoom} />
-    </>
+    </SpinPanel>
   );
 };
