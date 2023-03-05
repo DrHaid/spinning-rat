@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useRef, useState } from "react";
+import { useRef, useState, Ref } from "react";
 import { SoundPanel } from "../Panel";
 import { Icon } from "../SVGIcon";
 import { YouTubePlayer, YouTubePlayerRef } from "../YouTubePlayer";
@@ -18,11 +18,12 @@ const SoundControlsRow = styled.div`
 `;
 
 export const SoundControls = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(25);
-  const player: React.Ref<YouTubePlayerRef> = useRef(null);
+  const player: Ref<YouTubePlayerRef> = useRef(null);
 
-  const onPlayPause = (isPaused: boolean) => {
-    if (isPaused) {
+  const onPlayPauseSwitch = () => {
+    if (isPlaying) {
       player.current?.pauseVideo();
       return;
     }
@@ -34,11 +35,15 @@ export const SoundControls = () => {
     player.current?.setVolume(vol);
   };
 
+  const onPlayStateChange = (isPlaying: boolean) => {
+    setIsPlaying(isPlaying);
+  };
+
   return (
     <SoundPanel>
       Sound
       <SoundControlsRow>
-        <PlayPauseButton onChange={onPlayPause} />
+        <PlayPauseButton isPlaying={isPlaying} onClick={onPlayPauseSwitch} />
         <SoundSlider>
           <Icon iconType="volume" />
           <Slider
@@ -50,6 +55,7 @@ export const SoundControls = () => {
       </SoundControlsRow>
       <YouTubePlayer
         ref={player}
+        onPlayStateChange={onPlayStateChange}
         width="270px"
         initialVolume={25}
         videoEmbedURL="https://www.youtube.com/embed/0LwcvjNJTuM?start=288"

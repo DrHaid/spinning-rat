@@ -9,6 +9,7 @@ import {
 
 type YouTubePlayerProps = {
   videoEmbedURL: string;
+  onPlayStateChange?: (isPlaying: boolean) => void;
   initialVolume?: number;
   width?: string;
   height?: string;
@@ -22,7 +23,13 @@ export type YouTubePlayerRef = {
 
 export const YouTubePlayer = forwardRef(
   (
-    { videoEmbedURL, initialVolume, width, height }: YouTubePlayerProps,
+    {
+      videoEmbedURL,
+      onPlayStateChange,
+      initialVolume,
+      width,
+      height,
+    }: YouTubePlayerProps,
     ref: ForwardedRef<YouTubePlayerRef>
   ) => {
     const player: any = useRef();
@@ -52,12 +59,22 @@ export const YouTubePlayer = forwardRef(
       player.current = new (window as any).YT.Player("youtube-player", {
         events: {
           onReady: onPlayerReady,
+          onStateChange: onStateChange,
         },
       });
     };
 
     const onPlayerReady = () => {
       player.current.setVolume(initialVolume ?? 100);
+    };
+
+    const onStateChange = (e: any) => {
+      const state = e.data;
+      if (state === 1 || state === 3 || state === -1) {
+        onPlayStateChange?.(true);
+      } else {
+        onPlayStateChange?.(false);
+      }
     };
 
     const playVideo = () => {
