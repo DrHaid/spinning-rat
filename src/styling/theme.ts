@@ -15,6 +15,7 @@ const space = {
 
 const border = {
   xs: `${space.xs} solid ${color.pink}`,
+  xxs: `1px solid ${color.pink}`,
 };
 
 export const THEME = {

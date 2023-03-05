@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SVGIcon } from "../SVGIcon";
+import { Icon } from "../SVGIcon";
 
 type PlayPauseButtonProps = {
   onChange: (isPaused: boolean) => void;
@@ -14,7 +14,5 @@ export const PlayPauseButton = ({ onChange }: PlayPauseButtonProps) => {
     onChange(paused);
   };
 
-  return (
-    <SVGIcon iconType={isPaused ? "play" : "pause"} onClick={onIconClick} />
-  );
+  return <Icon iconType={isPaused ? "play" : "pause"} onClick={onIconClick} />;
 };

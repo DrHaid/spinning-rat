@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
 import { SoundPanel } from "../Panel";
-import { SVGIcon } from "../SVGIcon";
+import { Icon } from "../SVGIcon";
 import { YouTubePlayer, YouTubePlayerRef } from "../YouTubePlayer";
 import { PlayPauseButton } from "./PlayPauseIcon";
 import { Slider } from "./Slider";
@@ -40,7 +40,7 @@ export const SoundControls = () => {
       <SoundControlsRow>
         <PlayPauseButton onChange={onPlayPause} />
         <SoundSlider>
-          <SVGIcon iconType="volume" />
+          <Icon iconType="volume" />
           <Slider
             sliderType="volume"
             value={volume}
