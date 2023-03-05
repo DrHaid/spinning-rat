@@ -1,9 +1,15 @@
+import { Controls } from "./components/controls/Controls";
+import { MainContainer } from "./components/MainContainer";
+import { RatDisplay } from "./components/RatDisplay";
+import { Socials } from "./components/Socials";
+
 const App = () => {
   return (
-    <>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Horizontally_spinning_rat.gif" />
-      <span>he do be spinnin tho</span>
-    </>
+    <MainContainer>
+      <RatDisplay />
+      <Controls />
+      <Socials />
+    </MainContainer>
   );
 };
 
