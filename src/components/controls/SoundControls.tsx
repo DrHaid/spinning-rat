@@ -6,9 +6,10 @@ import { YouTubePlayer, YouTubePlayerRef } from "../YouTubePlayer";
 import { PlayPauseButton } from "./PlayPauseIcon";
 import { Slider } from "./Slider";
 
-const SoundSlider = styled.div`
+const FlexCenterContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const SoundControlsRow = styled.div`
@@ -44,14 +45,16 @@ export const SoundControls = () => {
       Sound
       <SoundControlsRow>
         <PlayPauseButton isPlaying={isPlaying} onClick={onPlayPauseSwitch} />
-        <SoundSlider>
-          <Icon iconType="volume" />
+        <FlexCenterContainer>
+          <FlexCenterContainer>
+            <Icon iconType="volume" />
+          </FlexCenterContainer>
           <Slider
             sliderType="volume"
             value={volume}
             onChange={onChangeVolume}
           />
-        </SoundSlider>
+        </FlexCenterContainer>
       </SoundControlsRow>
       <YouTubePlayer
         ref={player}

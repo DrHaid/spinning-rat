@@ -2,6 +2,7 @@ const color = {
   dark: "#211d22",
   light: "#fefefe",
   // pink: "#b98e85",
+  brown: "#4f3233",
   pink: "#dfaba0",
 };
 
