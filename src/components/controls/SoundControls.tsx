@@ -50,7 +50,9 @@ export const SoundControls = () => {
             <Icon iconType="volume" />
           </FlexCenterContainer>
           <Slider
-            sliderType="volume"
+            min={0}
+            max={100}
+            step={1}
             value={volume}
             onChange={onChangeVolume}
           />

@@ -1,6 +1,6 @@
 import { Controls } from "./components/controls/Controls";
 import { MainContainer } from "./components/MainContainer";
-import { RatDisplay } from "./components/RatDisplay";
+import { RatDisplay } from "./components/rat/RatDisplay";
 import { Socials } from "./components/Socials";
 
 const App = () => {
