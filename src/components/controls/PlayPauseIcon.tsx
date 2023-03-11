@@ -1,4 +1,4 @@
-import { Icon } from "../SVGIcon";
+import { Icon } from "../Icon";
 
 type PlayPauseButtonProps = {
   isPlaying: boolean;

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useRef, useState, Ref } from "react";
 import { SoundPanel } from "../Panel";
-import { Icon } from "../SVGIcon";
+import { Icon } from "../Icon";
 import { YouTubePlayer, YouTubePlayerRef } from "../YouTubePlayer";
 import { PlayPauseButton } from "./PlayPauseIcon";
 import { Slider } from "./Slider";

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { THEME } from "../styling/theme";
-import { Icon } from "./SVGIcon";
+import { Icon } from "./Icon";
 
 export const SocialRow = styled.div`
   display: flex;

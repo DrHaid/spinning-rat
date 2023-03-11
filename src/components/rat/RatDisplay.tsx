@@ -1,21 +1,48 @@
 import styled from "@emotion/styled";
 import { Canvas } from "@react-three/fiber";
-import { Panel } from "../Panel";
+import { useRef, useState } from "react";
+import { Icon } from "../Icon";
+import { RatPanel } from "../Panel";
 import { Rat } from "./Rat";
 
 const CanvasContainer = styled.div`
   height: 50vh;
-  aspect-ratio: 1 / 1;
+  width: 50vh;
+`;
+
+const FloatingButton = styled.div`
+  position: absolute;
+  right: 0;
+`;
+
+const RelativeContainer = styled.div`
+  position: relative;
 `;
 
 export const RatDisplay = () => {
+  const fullscreenRef = useRef<HTMLDivElement|null>(null)
+  const [hover, setHover] = useState(false);
+    
+  const setFullscreen= () => {
+    fullscreenRef.current?.requestFullscreen();
+  }
+
   return (
-    <Panel>
-      <CanvasContainer>
+    <RatPanel
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}>
+      <CanvasContainer ref={fullscreenRef}>
         <Canvas>
           <Rat />
         </Canvas>
       </CanvasContainer>
-    </Panel>
+      { hover && 
+        <RelativeContainer>
+          <FloatingButton>
+            <Icon iconType="fullscreen" onClick={setFullscreen}/>
+         </FloatingButton>
+       </RelativeContainer> 
+      }
+    </RatPanel>
   );
 };
