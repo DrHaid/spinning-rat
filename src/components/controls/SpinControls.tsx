@@ -39,8 +39,8 @@ export const SpinControls = () => {
       Speed
       <Slider
         min={0}
-        max={0.1}
-        step={0.001}
+        max={1}
+        step={0.01}
         value={spinParams.speed}
         onChange={(val) => setParam(val, "speed")}
       />

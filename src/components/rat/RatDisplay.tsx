@@ -20,29 +20,30 @@ const RelativeContainer = styled.div`
 `;
 
 export const RatDisplay = () => {
-  const fullscreenRef = useRef<HTMLDivElement|null>(null)
+  const fullscreenRef = useRef<HTMLDivElement | null>(null);
   const [hover, setHover] = useState(false);
-    
-  const setFullscreen= () => {
+
+  const setFullscreen = () => {
     fullscreenRef.current?.requestFullscreen();
-  }
+  };
 
   return (
     <RatPanel
       onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}>
+      onMouseLeave={() => setHover(false)}
+    >
       <CanvasContainer ref={fullscreenRef}>
         <Canvas>
           <Rat />
         </Canvas>
       </CanvasContainer>
-      { hover && 
+      {hover && (
         <RelativeContainer>
           <FloatingButton>
-            <Icon iconType="fullscreen" onClick={setFullscreen}/>
-         </FloatingButton>
-       </RelativeContainer> 
-      }
+            <Icon iconType="fullscreen" onClick={setFullscreen} />
+          </FloatingButton>
+        </RelativeContainer>
+      )}
     </RatPanel>
   );
 };

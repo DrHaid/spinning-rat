@@ -17,7 +17,7 @@ const RAT_SPIN_DEFAULTS = {
   spinX: 0,
   spinY: -0.4,
   spinZ: 0,
-  speed: 0.02,
+  speed: 0.175,
   zoom: 0.75,
 };
 

@@ -13,10 +13,16 @@ export const Rat = () => {
   const { spinParams } = useContext(RatSpinContext);
 
   useFrame(() => {
-    ratMesh.current.rotation.x += spinParams.spinX * spinParams.speed;
-    ratMesh.current.rotation.y += spinParams.spinY * spinParams.speed;
-    ratMesh.current.rotation.z += spinParams.spinZ * spinParams.speed;
+    const speed = convertSpeed(spinParams.speed);
+    ratMesh.current.rotation.x += spinParams.spinX * speed;
+    ratMesh.current.rotation.y += spinParams.spinY * speed;
+    ratMesh.current.rotation.z += spinParams.spinZ * speed;
   });
+
+  const convertSpeed = (speedParam: number) => {
+    const speed = 1 - Math.cos((speedParam * Math.PI) / 2);
+    return speed * 0.5;
+  };
 
   return (
     <>
