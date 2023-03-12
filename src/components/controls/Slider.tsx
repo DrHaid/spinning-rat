@@ -15,7 +15,7 @@ const StyledSlider = styled.input`
     appearance: none;
     width: 20px;
     height: 20px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background: ${THEME.color.pink};
     cursor: pointer;
   }
@@ -31,41 +31,20 @@ const StyledSlider = styled.input`
 
 type SliderProps = {
   value: number;
-  sliderType?: "multiplier" | "volume";
+  min: number;
+  max: number;
+  step: number;
   onChange: (value: number) => void;
 };
 
-const SLIDER_SETTINGS = {
-  multiplier: {
-    min: -100,
-    max: 100,
-    mult: 100,
-  },
-  volume: {
-    min: 0,
-    max: 100,
-    mult: 1,
-  },
-};
-
-export const Slider = ({
-  value,
-  sliderType = "multiplier",
-  onChange,
-}: SliderProps) => {
-  const sliderSettings = SLIDER_SETTINGS[sliderType];
-
-  const sliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const val = Number(event.target.value);
-    onChange(val / sliderSettings.mult);
-  };
-
+export const Slider = ({ value, min, max, step, onChange }: SliderProps) => {
   return (
     <StyledSlider
-      min={sliderSettings.min}
-      max={sliderSettings.max}
-      value={value * sliderSettings.mult}
-      onChange={sliderChange}
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={({ target }) => onChange(Number(target.value))}
       type="range"
     />
   );

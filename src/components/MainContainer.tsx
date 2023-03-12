@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
+import { RatSpinProvider } from "../RatSpinProvider";
 
 const StretchContainer = styled.div`
   display: flex;
@@ -18,6 +19,8 @@ const CenterContainer = styled.div`
 
 export const MainContainer = ({ children }: PropsWithChildren<unknown>) => (
   <StretchContainer>
-    <CenterContainer>{children}</CenterContainer>
+    <CenterContainer>
+      <RatSpinProvider>{children}</RatSpinProvider>
+    </CenterContainer>
   </StretchContainer>
 );

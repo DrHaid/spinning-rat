@@ -3,6 +3,7 @@ import { ReactComponent as PauseIcon } from "../assets/pause.svg";
 import { ReactComponent as VolumeIcon } from "../assets/volume.svg";
 import { ReactComponent as PlayIcon } from "../assets/play.svg";
 import { ReactComponent as GithubIcon } from "../assets/github.svg";
+import { ReactComponent as FullscreenIcon } from "../assets/fullscreen.svg";
 import KYMImage from "../assets/knowyourmeme.png";
 import { THEME } from "../styling/theme";
 
@@ -20,7 +21,7 @@ const StyledImg = styled.img`
   border: ${THEME.border.xxs};
 `;
 
-type IconType = "pause" | "play" | "volume" | "github" | "kym";
+type IconType = "pause" | "play" | "volume" | "github" | "kym" | "fullscreen";
 
 const getIcon = (iconType: IconType) => {
   switch (iconType) {
@@ -34,6 +35,8 @@ const getIcon = (iconType: IconType) => {
       return <GithubIcon fill={THEME.color.pink} />;
     case "kym":
       return <StyledImg src={KYMImage} />;
+    case "fullscreen":
+      return <FullscreenIcon fill={THEME.color.pink} />;
   }
 };
 

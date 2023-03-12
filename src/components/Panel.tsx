@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { THEME } from "../styling/theme";
 
-export const Panel = styled.div`
+export const RatPanel = styled.div`
   display: flex;
+  background-color: ${THEME.color.black};
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
   padding: ${THEME.space.s};
