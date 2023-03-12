@@ -4,6 +4,7 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/spinning-rat/",
   plugins: [react(), svgr()],
   assetsInclude: ["**/*.gltf"],
 });
