@@ -6,8 +6,8 @@ import { RatPanel } from "../Panel";
 import { Rat } from "./Rat";
 
 const CanvasContainer = styled.div`
-  height: 50vh;
-  width: 50vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const FloatingButton = styled.div`
