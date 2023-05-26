@@ -7,21 +7,23 @@ import { RatMesh } from "./RatMesh";
 
 const deg2rad = (degrees: number) => degrees * (Math.PI / 180);
 
+const SPEED_MULTIPLIER = 65;
+
 export const Rat = () => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const ratMesh = useRef<Group>(null!);
   const { spinParams } = useContext(RatSpinContext);
 
-  useFrame(() => {
+  useFrame((_state, delta) => {
     const speed = convertSpeed(spinParams.speed);
-    ratMesh.current.rotation.x += spinParams.spinX * speed;
-    ratMesh.current.rotation.y += spinParams.spinY * speed;
-    ratMesh.current.rotation.z += spinParams.spinZ * speed;
+    ratMesh.current.rotation.x += spinParams.spinX * (speed * delta);
+    ratMesh.current.rotation.y += spinParams.spinY * (speed * delta);
+    ratMesh.current.rotation.z += spinParams.spinZ * (speed * delta);
   });
 
   const convertSpeed = (speedParam: number) => {
     const speed = 1 - Math.cos((speedParam * Math.PI) / 2);
-    return speed * 0.5;
+    return speed * SPEED_MULTIPLIER;
   };
 
   return (
