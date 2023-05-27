@@ -3,8 +3,7 @@ import { THEME } from "../styling/theme";
 
 export const RatPanel = styled.div`
   display: flex;
-  width: 500px;
-  height: 500px;
+  aspect-ratio: 1/1;
   background-color: ${THEME.color.black};
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
