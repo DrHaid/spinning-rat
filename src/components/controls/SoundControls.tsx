@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useRef, useState, Ref } from "react";
-import { SoundPanel } from "../Panel";
+import { PanelLabel, SoundPanel } from "../Panel";
 import { Icon } from "../Icon";
 import { YouTubePlayer, YouTubePlayerRef } from "../YouTubePlayer";
 import { PlayPauseButton } from "./PlayPauseIcon";
@@ -16,6 +16,7 @@ const SoundControlsRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  width: 100%;
 `;
 
 export const SoundControls = () => {
@@ -42,7 +43,7 @@ export const SoundControls = () => {
 
   return (
     <SoundPanel>
-      Sound
+      <PanelLabel>Sound</PanelLabel>
       <SoundControlsRow>
         <PlayPauseButton isPlaying={isPlaying} onClick={onPlayPauseSwitch} />
         <FlexCenterContainer>
@@ -61,7 +62,6 @@ export const SoundControls = () => {
       <YouTubePlayer
         ref={player}
         onPlayStateChange={onPlayStateChange}
-        width="270px"
         initialVolume={25}
         videoEmbedURL="https://www.youtube.com/embed/0LwcvjNJTuM?start=288"
       />

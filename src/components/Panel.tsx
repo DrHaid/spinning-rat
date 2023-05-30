@@ -13,8 +13,7 @@ export const RatPanel = styled.div`
 export const SpinPanel = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 3;
-  justify-content: center;
+  align-items: center;
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
   padding: ${THEME.space.s};
@@ -23,11 +22,16 @@ export const SpinPanel = styled.div`
 
 export const SoundPanel = styled.div`
   display: flex;
-  flex-shrink: 0;
-  flex-grow: 0;
+  flex-direction: column;
+  align-items: center;
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
   padding: ${THEME.space.s};
-  flex-direction: column;
   gap: ${THEME.space.s};
+`;
+
+export const PanelLabel = styled.div`
+  display: flex;
+  align-items: start;
+  width: 100%;
 `;

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import styled from "@emotion/styled";
 import {
   ForwardedRef,
   forwardRef,
@@ -11,8 +12,6 @@ type YouTubePlayerProps = {
   videoEmbedURL: string;
   onPlayStateChange?: (isPlaying: boolean) => void;
   initialVolume?: number;
-  width?: string;
-  height?: string;
 };
 
 export type YouTubePlayerRef = {
@@ -21,15 +20,14 @@ export type YouTubePlayerRef = {
   setVolume: (vol: number) => void;
 };
 
+const StyledIFrame = styled.iframe`
+  border: 0;
+  height: 100%;
+`;
+
 export const YouTubePlayer = forwardRef(
   (
-    {
-      videoEmbedURL,
-      onPlayStateChange,
-      initialVolume,
-      width,
-      height,
-    }: YouTubePlayerProps,
+    { videoEmbedURL, onPlayStateChange, initialVolume }: YouTubePlayerProps,
     ref: ForwardedRef<YouTubePlayerRef>
   ) => {
     const player: any = useRef();
@@ -91,13 +89,8 @@ export const YouTubePlayer = forwardRef(
     };
 
     return (
-      <iframe
+      <StyledIFrame
         id="youtube-player"
-        style={{
-          width: width,
-          height: height,
-          border: 0,
-        }}
         src={`${videoEmbedURL}&controls=0&enablejsapi=1`}
       />
     );

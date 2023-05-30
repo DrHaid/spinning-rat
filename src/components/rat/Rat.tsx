@@ -25,10 +25,7 @@ export const Rat = () => {
       VECTOR.RIGHT,
       spinParams.spinX * (speed * delta)
     );
-    ratMesh.current.rotateOnAxis(
-      VECTOR.UP, 
-      spinParams.spinY * (speed * delta)
-    );
+    ratMesh.current.rotateOnAxis(VECTOR.UP, spinParams.spinY * (speed * delta));
     ratMesh.current.rotateOnAxis(
       VECTOR.FORWARD,
       spinParams.spinZ * (speed * delta)

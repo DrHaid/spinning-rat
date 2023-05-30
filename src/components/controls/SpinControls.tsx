@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { RatSpinContext, RatSpinParams } from "../../RatSpinProvider";
-import { SpinPanel } from "../Panel";
+import { PanelLabel, SpinPanel } from "../Panel";
 import { Slider } from "./Slider";
 
 export const SpinControls = () => {
@@ -14,7 +14,7 @@ export const SpinControls = () => {
 
   return (
     <SpinPanel>
-      Spin
+      <PanelLabel>Spin</PanelLabel>
       <Slider
         min={-1}
         max={1}
@@ -36,7 +36,7 @@ export const SpinControls = () => {
         value={spinParams.spinZ}
         onChange={(val) => setParam(val, "spinZ")}
       />
-      Speed
+      <PanelLabel>Speed</PanelLabel>
       <Slider
         min={0}
         max={1}
@@ -44,7 +44,7 @@ export const SpinControls = () => {
         value={spinParams.speed}
         onChange={(val) => setParam(val, "speed")}
       />
-      Zoom
+      <PanelLabel>Zoom</PanelLabel>
       <Slider
         min={0.2}
         max={1.1}
