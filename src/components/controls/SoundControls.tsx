@@ -5,17 +5,26 @@ import { Icon } from "../Icon";
 import { YouTubePlayer, YouTubePlayerRef } from "../YouTubePlayer";
 import { PlayPauseButton } from "./PlayPauseIcon";
 import { Slider } from "./Slider";
+import { THEME } from "../../styling/theme";
+
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 const FlexCenterContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
 `;
 
 const SoundControlsRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: ${THEME.space.s};
   width: 100%;
 `;
 
@@ -45,11 +54,13 @@ export const SoundControls = () => {
     <SoundPanel>
       <PanelLabel>Sound</PanelLabel>
       <SoundControlsRow>
-        <PlayPauseButton isPlaying={isPlaying} onClick={onPlayPauseSwitch} />
+        <IconContainer>
+          <PlayPauseButton isPlaying={isPlaying} onClick={onPlayPauseSwitch} />
+        </IconContainer>
         <FlexCenterContainer>
-          <FlexCenterContainer>
+          <IconContainer>
             <Icon iconType="volume" />
-          </FlexCenterContainer>
+          </IconContainer>
           <Slider
             min={0}
             max={100}
@@ -61,6 +72,8 @@ export const SoundControls = () => {
       </SoundControlsRow>
       <YouTubePlayer
         ref={player}
+        height="100%"
+        width="100%"
         onPlayStateChange={onPlayStateChange}
         initialVolume={25}
         videoEmbedURL="https://www.youtube.com/embed/0LwcvjNJTuM?start=288"

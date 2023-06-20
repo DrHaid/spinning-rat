@@ -13,7 +13,7 @@ export const RatPanel = styled.div`
 export const SpinPanel = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
   padding: ${THEME.space.s};
@@ -23,7 +23,7 @@ export const SpinPanel = styled.div`
 export const SoundPanel = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   border-radius: ${THEME.space.m};
   border: ${THEME.border.xs};
   padding: ${THEME.space.s};

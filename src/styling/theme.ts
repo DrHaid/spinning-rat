@@ -19,8 +19,13 @@ const border = {
   xxs: `1px solid ${color.pink}`,
 };
 
+const responsive = {
+  maxMobileWidth: "540px",
+};
+
 export const THEME = {
-  color: color,
-  space: space,
-  border: border,
+  color,
+  space,
+  border,
+  responsive,
 };
