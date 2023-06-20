@@ -3,7 +3,7 @@ import { THEME } from "../../styling/theme";
 
 const StyledSlider = styled.input`
   -webkit-appearance: none;
-  width: 100%;
+  width: inherit;
   height: 8px;
   border-radius: 5px;
   background: ${THEME.color.brown};

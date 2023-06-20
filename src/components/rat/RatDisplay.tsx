@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Canvas } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Icon } from "../Icon";
 import { RatPanel } from "../Panel";
 import { Rat } from "./Rat";
@@ -22,10 +22,25 @@ const RelativeContainer = styled.div`
 export const RatDisplay = () => {
   const fullscreenRef = useRef<HTMLDivElement | null>(null);
   const [hover, setHover] = useState(false);
+  const [canvasRemountTrigger, setCanvasRemountTrigger] = useState(
+    new Date().getTime()
+  );
 
   const setFullscreen = () => {
     fullscreenRef.current?.requestFullscreen();
   };
+
+  const fullScreenChange = () => {
+    if (!document.fullscreenElement)
+      setCanvasRemountTrigger(new Date().getTime());
+  };
+
+  useLayoutEffect(() => {
+    addEventListener("fullscreenchange", fullScreenChange);
+    return () => {
+      removeEventListener("fullscreenchange", fullScreenChange);
+    };
+  }, []);
 
   return (
     <RatPanel
@@ -33,7 +48,7 @@ export const RatDisplay = () => {
       onMouseLeave={() => setHover(false)}
     >
       <CanvasContainer ref={fullscreenRef}>
-        <Canvas>
+        <Canvas key={canvasRemountTrigger}>
           <Rat />
         </Canvas>
       </CanvasContainer>

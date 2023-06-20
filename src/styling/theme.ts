@@ -2,7 +2,7 @@ const color = {
   dark: "#211d22",
   light: "#fefefe",
   black: "#070607",
-  brown: "#4f3233",
+  brown: "#5d4038",
   pink: "#dfaba0",
 };
 
@@ -19,8 +19,13 @@ const border = {
   xxs: `1px solid ${color.pink}`,
 };
 
+const responsive = {
+  maxMobileWidth: "540px",
+};
+
 export const THEME = {
-  color: color,
-  space: space,
-  border: border,
+  color,
+  space,
+  border,
+  responsive,
 };
