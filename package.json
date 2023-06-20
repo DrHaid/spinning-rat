@@ -2,7 +2,7 @@
   "name": "spinning-rat",
   "homepage": "https://drhaid.github.io/spinning-rat/",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "deploy": "npm run build && gh-pages -d dist",
