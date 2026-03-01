@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import RatModel from "../../assets/rat.gltf?url";
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef, JSX } from "react";
 import { Group } from "three";
 
 type GLTFResult = GLTF & {
@@ -15,8 +15,10 @@ type GLTFResult = GLTF & {
 };
 
 export const RatMesh = forwardRef(
-  (props: JSX.IntrinsicElements["group"], ref: React.ForwardedRef<Group>) => {
-    const { nodes, materials } = useGLTF(RatModel) as GLTFResult;
+  (props: JSX.IntrinsicElements["group"], ref: ForwardedRef<Group>) => {
+    const gltf = useGLTF(RatModel);
+    const nodes = gltf.nodes as GLTFResult["nodes"];
+    const materials = gltf.materials as GLTFResult["materials"];
     return (
       <group ref={ref} {...props} dispose={null}>
         <mesh
@@ -25,7 +27,7 @@ export const RatMesh = forwardRef(
         />
       </group>
     );
-  }
+  },
 );
 
 useGLTF.preload(RatModel);

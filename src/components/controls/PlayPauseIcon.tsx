@@ -1,9 +1,9 @@
 import { Icon } from "../Icon";
 
-type PlayPauseButtonProps = {
+interface PlayPauseButtonProps {
   isPlaying: boolean;
   onClick: () => void;
-};
+}
 
 export const PlayPauseButton = ({
   isPlaying,

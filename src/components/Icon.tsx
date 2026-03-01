@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
-import { ReactComponent as PauseIcon } from "../assets/pause.svg";
-import { ReactComponent as VolumeIcon } from "../assets/volume.svg";
-import { ReactComponent as PlayIcon } from "../assets/play.svg";
-import { ReactComponent as GithubIcon } from "../assets/github.svg";
-import { ReactComponent as FullscreenIcon } from "../assets/fullscreen.svg";
+import PauseIcon from "../assets/pause.svg?react";
+import VolumeIcon from "../assets/volume.svg?react";
+import PlayIcon from "../assets/play.svg?react";
+import GithubIcon from "../assets/github.svg?react";
+import FullscreenIcon from "../assets/fullscreen.svg?react";
 import KYMImage from "../assets/knowyourmeme.png";
 import { THEME } from "../styling/theme";
 
-type IconContainerProps = { cursorPointer: boolean };
+interface IconContainerProps {
+  cursorPointer: boolean;
+}
 
 const IconContainer = styled.div(({ cursorPointer }: IconContainerProps) => ({
   width: "2rem",
@@ -40,11 +42,11 @@ const getIcon = (iconType: IconType) => {
   }
 };
 
-type IconProps = {
+interface IconProps {
   iconType: IconType;
   href?: string;
   onClick?: () => void;
-};
+}
 
 export const Icon = ({ iconType, href, onClick }: IconProps) => (
   <IconContainer onClick={() => onClick?.()} cursorPointer={!!onClick}>

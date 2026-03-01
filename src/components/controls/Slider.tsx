@@ -29,13 +29,13 @@ const StyledSlider = styled.input`
   }
 `;
 
-type SliderProps = {
+interface SliderProps {
   value: number;
   min: number;
   max: number;
   step: number;
   onChange: (value: number) => void;
-};
+}
 
 export const Slider = ({ value, min, max, step, onChange }: SliderProps) => {
   return (

@@ -15,7 +15,6 @@ const VECTOR = {
 };
 
 export const Rat = () => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const ratMesh = useRef<Group>(null!);
   const { spinParams } = useContext(RatSpinContext);
 
@@ -23,12 +22,12 @@ export const Rat = () => {
     const speed = convertSpeed(spinParams.speed);
     ratMesh.current.rotateOnAxis(
       VECTOR.RIGHT,
-      spinParams.spinX * (speed * delta)
+      spinParams.spinX * (speed * delta),
     );
     ratMesh.current.rotateOnAxis(VECTOR.UP, spinParams.spinY * (speed * delta));
     ratMesh.current.rotateOnAxis(
       VECTOR.FORWARD,
-      spinParams.spinZ * (speed * delta)
+      spinParams.spinZ * (speed * delta),
     );
   });
 

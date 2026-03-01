@@ -1,17 +1,17 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
-export type RatSpinParams = {
+export interface RatSpinParams {
   spinX: number;
   spinY: number;
   spinZ: number;
   speed: number;
   zoom: number;
-};
+}
 
-type RatSpinContextProps = {
+interface RatSpinContextProps {
   spinParams: RatSpinParams;
   setSpinParams?: (spinParams: RatSpinParams) => void;
-};
+}
 
 const RAT_SPIN_DEFAULTS = {
   spinX: 0,

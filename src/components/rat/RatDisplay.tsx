@@ -23,7 +23,7 @@ export const RatDisplay = () => {
   const fullscreenRef = useRef<HTMLDivElement | null>(null);
   const [hover, setHover] = useState(false);
   const [canvasRemountTrigger, setCanvasRemountTrigger] = useState(
-    new Date().getTime()
+    new Date().getTime(),
   );
 
   const setFullscreen = () => {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ForwardedRef,
   forwardRef,
@@ -7,19 +6,45 @@ import {
   useRef,
 } from "react";
 
-type YouTubePlayerProps = {
+interface YouTubePlayerProps {
   videoEmbedURL: string;
   onPlayStateChange?: (isPlaying: boolean) => void;
   initialVolume?: number;
   width?: string;
   height?: string;
-};
+}
 
-export type YouTubePlayerRef = {
+export interface YouTubePlayerRef {
   playVideo: () => void;
   pauseVideo: () => void;
   setVolume: (vol: number) => void;
-};
+}
+
+interface YTPlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  setVolume: (volume: number) => void;
+}
+
+interface YTPlayerEvent {
+  data: number;
+}
+
+interface YTPlayerOptions {
+  events: {
+    onReady: () => void;
+    onStateChange: (event: YTPlayerEvent) => void;
+  };
+}
+
+declare global {
+  interface Window {
+    YT?: {
+      Player: new (elementId: string, options: YTPlayerOptions) => YTPlayer;
+    };
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
 
 export const YouTubePlayer = forwardRef(
   (
@@ -30,9 +55,9 @@ export const YouTubePlayer = forwardRef(
       width,
       height,
     }: YouTubePlayerProps,
-    ref: ForwardedRef<YouTubePlayerRef>
+    ref: ForwardedRef<YouTubePlayerRef>,
   ) => {
-    const player: any = useRef();
+    const player = useRef<YTPlayer>(undefined);
 
     useImperativeHandle(ref, () => ({
       playVideo,
@@ -42,11 +67,11 @@ export const YouTubePlayer = forwardRef(
 
     useEffect(() => {
       // Add YouTube iFrame API script to document
-      if (!(window as any).YT) {
+      if (!window.YT) {
         const tag = document.createElement("script");
         tag.src = "https://www.youtube.com/iframe_api";
 
-        (window as any).onYouTubeIframeAPIReady = initPlayer;
+        window.onYouTubeIframeAPIReady = initPlayer;
 
         const firstScriptTag = document.getElementsByTagName("script")[0];
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
@@ -56,7 +81,7 @@ export const YouTubePlayer = forwardRef(
     }, []);
 
     const initPlayer = () => {
-      player.current = new (window as any).YT.Player("youtube-player", {
+      player.current = new window.YT!.Player("youtube-player", {
         events: {
           onReady: onPlayerReady,
           onStateChange: onStateChange,
@@ -65,10 +90,10 @@ export const YouTubePlayer = forwardRef(
     };
 
     const onPlayerReady = () => {
-      player.current.setVolume(initialVolume ?? 100);
+      player.current?.setVolume(initialVolume ?? 100);
     };
 
-    const onStateChange = (e: any) => {
+    const onStateChange = (e: YTPlayerEvent) => {
       const state = e.data;
       if (state === 1 || state === 3 || state === -1) {
         onPlayStateChange?.(true);
@@ -78,16 +103,16 @@ export const YouTubePlayer = forwardRef(
     };
 
     const playVideo = () => {
-      player.current.playVideo();
+      player.current?.playVideo();
     };
 
     const pauseVideo = () => {
-      player.current.pauseVideo();
+      player.current?.pauseVideo();
     };
 
     const setVolume = (vol: number) => {
       const clampedVolume = Math.max(Math.min(100, vol), 0);
-      player.current.setVolume(clampedVolume);
+      player.current?.setVolume(clampedVolume);
     };
 
     return (
@@ -101,5 +126,5 @@ export const YouTubePlayer = forwardRef(
         src={`${videoEmbedURL}&controls=0&enablejsapi=1`}
       />
     );
-  }
+  },
 );
